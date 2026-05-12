@@ -770,12 +770,12 @@
     }
   
     .card {
-      width: calc(33.33% - 6px);
+      width: calc(20% - 7px);
     }
   
     .card-placeholder {
-      width: calc(33.33% - 6px);
-      height: 80px;
+      width: calc(20% - 7px);
+      height: 60px;
     }
   
     .dropzone,

@@ -177,7 +177,7 @@
     }
   
     .card {
-      width: calc(33.33% - 6px);
-      min-width: 44px;
+      width: calc(20% - 7px);
+      min-width: 40px;
     }
   }
