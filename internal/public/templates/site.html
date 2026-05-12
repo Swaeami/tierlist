@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>{{ .Title }}</h1>
+      {{ if .Description }}
+        <p class="description visible">{{ .Description }}</p>
+      {{ end }}
+    </header>
+
+    <section class="tierlist">
+      {{ range .Tiers }}
+        <section class="tier" style="{{ .GridStyle }}">
+          <div class="tier-label" style="background: {{ .Color }}; font-size: {{ .FontSize }}px">
+            {{ .Label }}
+          </div>
+
+          <div class="items">
+            {{ range .Items }}
+              <article class="card">
+                <img src="{{ .ImageURL }}" alt="{{ .Label }}" loading="lazy" />
+                {{ if .Label }}
+                  <div class="label" title="{{ .Label }}">{{ .Label }}</div>
+                {{ end }}
+              </article>
+            {{ end }}
+          </div>
+        </section>
+      {{ end }}
+    </section>
+  </main>
+</body>
+</html>
