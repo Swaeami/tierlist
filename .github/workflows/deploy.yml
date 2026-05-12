@@ -29,6 +29,15 @@ jobs:
           push: true
           tags: ghcr.io/swaeami/tierlist:latest
 
+      - name: Copy docker-compose.yml to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: docker-compose.yml
+          target: /opt/tierlist
+
       - name: Deploy on server
         uses: appleboy/ssh-action@v1
         with:

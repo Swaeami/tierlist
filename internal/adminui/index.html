@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tierlist Admin</title>
+  <link rel="stylesheet" href="/admin/styles.css" />
+</head>
+
+<body>
+  <div class="layout">
+    <header class="topbar">
+      <div class="brand-fields">
+        <input id="tierlistTitle" class="title-input" placeholder="Название тирлиста" />
+        <textarea id="tierlistDescription" class="description-input" placeholder="Описание"></textarea>
+      </div>
+
+      <div class="actions">
+        <button id="saveButton">Сохранить</button>
+      </div>
+    </header>
+
+    <input id="fileInput" class="hidden-input" type="file" accept="image/*" multiple />
+
+    <section class="unranked-block">
+      <button id="uploadButton" class="icon-button plus" title="Добавить картинки" type="button">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div id="unrankedDropzone" class="unranked-dropzone"></div>
+    </section>
+
+    <main>
+      <section id="tierlist" class="tierlist"></section>
+
+      <div class="add-tier-row">
+        <button id="addTierButton" class="secondary" type="button">Добавить тир</button>
+      </div>
+    </main>
+  </div>
+
+  <div id="uploadModal" class="modal-backdrop" aria-hidden="true">
+    <section class="modal crop-modal" role="dialog" aria-modal="true" aria-labelledby="uploadTitle">
+      <header class="modal-header">
+        <h2 id="uploadTitle">Добавить изображения</h2>
+
+        <button id="closeUploadModalButton" class="icon-button ghost" title="Закрыть" type="button">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </header>
+
+      <div class="modal-body">
+        <div id="pasteZone" class="paste-zone" tabindex="0">
+          <div>
+            <p><strong>Ctrl+V</strong></p>
+            <p>Перетащи изображения сюда или выбери файлы.</p>
+          </div>
+        </div>
+
+        <div id="cropEditor" class="crop-editor hidden">
+          <aside id="cropList" class="crop-list"></aside>
+
+          <section class="crop-main">
+            <div class="crop-workspace">
+              <div id="cropFrame" class="crop-frame">
+                <img id="cropImage" alt="" draggable="false" />
+              </div>
+            </div>
+
+            <div class="crop-fields">
+              <input id="cropLabelInput" placeholder="Label под картинкой" />
+
+              <label class="zoom-field">
+                <span>Zoom</span>
+                <input id="cropZoomInput" type="range" min="1" max="4" step="0.01" value="1" />
+              </label>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <footer class="modal-actions">
+        <button id="chooseFilesButton" class="secondary" type="button">Выбрать файлы</button>
+        <button id="uploadCroppedButton" type="button">Добавить</button>
+      </footer>
+    </section>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="/admin/app.js"></script>
+</body>
+</html>

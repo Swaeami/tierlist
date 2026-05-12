@@ -4,4 +4,5 @@
 admin.local.json
 runtime/
 *.exe
+*.exe~
 .env.deploy

@@ -10,6 +10,8 @@ import (
 	"net/url"
 	"os"
 	"strings"
+
+	"games-tierlist/internal/adminui"
 )
 
 type adminConfig struct {
@@ -31,8 +33,8 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/", serveAdminIndex)
-	mux.Handle("/admin/", http.StripPrefix("/admin/", http.FileServer(http.Dir("admin"))))
+	mux.HandleFunc("/", adminui.ServeIndex)
+	mux.Handle("/admin/", http.StripPrefix("/admin/", adminui.ServeStatic()))
 
 	mux.Handle("/api/", newAPIProxy(target, cfg.AdminToken))
 	mux.Handle("/site/", newSiteProxy(target))
@@ -74,15 +76,6 @@ func loadAdminConfig(path string) (adminConfig, error) {
 	}
 
 	return cfg, nil
-}
-
-func serveAdminIndex(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.NotFound(w, r)
-		return
-	}
-
-	http.ServeFile(w, r, "admin/index.html")
 }
 
 func newAPIProxy(target *url.URL, token string) http.Handler {
