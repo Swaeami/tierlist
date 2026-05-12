@@ -37,5 +37,18 @@
       {{ end }}
     </section>
   </main>
+  <script>
+    if (window.matchMedia('(hover: none)').matches) {
+      document.querySelectorAll('.card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          var isOpen = card.classList.contains('label-open');
+          document.querySelectorAll('.card.label-open').forEach(function(c) {
+            c.classList.remove('label-open');
+          });
+          if (!isOpen) card.classList.add('label-open');
+        });
+      });
+    }
+  </script>
 </body>
 </html>
