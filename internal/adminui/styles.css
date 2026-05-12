@@ -177,14 +177,13 @@
     margin-bottom: 14px;
     border: 1px dashed #3a3a3a;
     border-radius: 18px;
-    background: rgba(15, 15, 15, 0.92);
-    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.025);
     padding: 10px;
     position: sticky;
     top: 10px;
     z-index: 40;
   }
-  
+
   .unranked-dropzone {
     display: flex;
     flex-wrap: wrap;
@@ -192,6 +191,8 @@
     align-content: flex-start;
     align-items: flex-end;
     min-height: 52px;
+    max-height: 35vh;
+    overflow-y: auto;
   }
   
   .unranked-dropzone.dragover,
