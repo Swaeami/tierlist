@@ -324,8 +324,8 @@
   }
   
   .card-placeholder {
-    width: 84px;
-    height: 118px;
+    width: 70px;
+    height: 98px;
     align-self: flex-end;
     border: 2px dashed rgba(255,255,255,0.55);
     border-radius: 11px;
@@ -346,10 +346,10 @@
   }
   
   .card {
-    width: 84px;
+    width: 70px;
     align-self: flex-end;
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 11px;
+    border-radius: 9px;
     overflow: hidden;
     background:
       linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025)),
@@ -676,12 +676,12 @@
   
   @media (min-width: 1500px) {
     .card {
-      width: 94px;
+      width: 78px;
     }
   
     .card-placeholder {
-      width: 94px;
-      height: 128px;
+      width: 78px;
+      height: 106px;
     }
   }
   
@@ -770,12 +770,12 @@
     }
   
     .card {
-      width: calc(50% - 4px);
+      width: calc(33.33% - 6px);
     }
   
     .card-placeholder {
-      width: calc(50% - 4px);
-      height: 140px;
+      width: calc(33.33% - 6px);
+      height: 80px;
     }
   
     .dropzone,

@@ -32,11 +32,12 @@
     font-size: clamp(28px, 5.3vw, 78px);
     letter-spacing: -0.075em;
     line-height: 0.9;
+    padding-bottom: 0.1em;
   }
   
   .description {
     max-width: 860px;
-    margin: 14px 0 0;
+    margin: 24px 0 0;
     color: #bdbdbd;
     font-size: clamp(13px, 1.3vw, 15px);
     line-height: 1.45;
@@ -83,11 +84,11 @@
   }
   
   .card {
-    width: 84px;
+    width: 70px;
     align-self: flex-end;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 11px;
+    border-radius: 9px;
     background:
       linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025)),
       #171717;
@@ -120,7 +121,7 @@
   
   @media (min-width: 1500px) {
     .card {
-      width: 94px;
+      width: 78px;
     }
   }
   
@@ -176,7 +177,7 @@
     }
   
     .card {
-      width: calc(50% - 3px);
-      min-width: 64px;
+      width: calc(33.33% - 6px);
+      min-width: 44px;
     }
   }
