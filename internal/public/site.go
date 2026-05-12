@@ -128,8 +128,8 @@ func publicImagePath(image string) string {
 }
 
 func sharedTierLayout(tiers []model.Tier) (int, int) {
-	width := 170
-	fontSize := 48
+	width := 115
+	fontSize := 32
 
 	for _, tier := range tiers {
 		width = maxInt(width, tierWidth(tier.Label))
@@ -143,13 +143,13 @@ func tierWidth(text string) int {
 	totalLength := runeLen(text)
 	longest := longestWordLen(text)
 
-	return minInt(460, maxInt(170, maxInt(120+longest*18, 90+totalLength*7)))
+	return minInt(310, maxInt(115, maxInt(80+longest*12, 60+totalLength*5)))
 }
 
 func tierFontSize(text string) int {
 	totalLength := runeLen(text)
 
-	return maxInt(22, minInt(48, 48-maxInt(0, totalLength-22)*9/10))
+	return maxInt(14, minInt(32, 32-maxInt(0, totalLength-14)*6/10))
 }
 
 func longestWordLen(text string) int {

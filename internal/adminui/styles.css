@@ -24,8 +24,8 @@
   
   button {
     border: 0;
-    border-radius: 12px;
-    padding: 10px 14px;
+    border-radius: 10px;
+    padding: 8px 12px;
     font-weight: 800;
     cursor: pointer;
     background: #f5f5f5;
@@ -48,8 +48,8 @@
   textarea {
     width: 100%;
     border: 1px solid #333;
-    border-radius: 12px;
-    padding: 10px 12px;
+    border-radius: 10px;
+    padding: 8px 10px;
     background: rgba(255,255,255,0.05);
     color: #f5f5f5;
     outline: none;
@@ -76,7 +76,7 @@
   .layout {
     width: min(1800px, calc(100vw - 32px));
     margin: 0 auto;
-    padding: 24px 0 48px;
+    padding: 16px 0 48px;
   }
   
   .topbar {
@@ -84,50 +84,50 @@
     top: 0;
     z-index: 50;
     display: grid;
-    grid-template-columns: minmax(280px, 760px) auto;
-    gap: 18px;
+    grid-template-columns: minmax(200px, 640px) auto;
+    gap: 14px;
     align-items: start;
-    padding: 14px 0 18px;
-    margin-bottom: 18px;
+    padding: 10px 0 14px;
+    margin-bottom: 14px;
     background: rgba(15, 15, 15, 0.92);
     backdrop-filter: blur(12px);
   }
   
   .brand-fields {
     display: grid;
-    gap: 10px;
+    gap: 8px;
   }
   
   .title-input {
-    font-size: clamp(28px, 5vw, 62px);
+    font-size: clamp(18px, 3.3vw, 42px);
     font-weight: 950;
     letter-spacing: -0.06em;
     line-height: 0.95;
-    padding: 8px 12px;
+    padding: 6px 10px;
   }
   
   .description-input {
-    min-height: 74px;
-    font-size: 15px;
+    min-height: 52px;
+    font-size: 13px;
     line-height: 1.45;
     color: #d0d0d0;
   }
   
   .actions {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
   }
   
   .icon-button {
-    width: 38px;
-    height: 38px;
+    width: 32px;
+    height: 32px;
     display: inline-grid;
     place-items: center;
     padding: 0;
-    border-radius: 11px;
+    border-radius: 9px;
     background: rgba(255, 255, 255, 0.82);
     color: #111;
     border: 1px solid rgba(0, 0, 0, 0.16);
@@ -150,49 +150,70 @@
   }
   
   .icon-button.plus {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    border-radius: 14px;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 11px;
     background: #f5f5f5;
     color: #111;
   }
   
   .icon-button svg {
-    width: 19px;
-    height: 19px;
+    width: 15px;
+    height: 15px;
     pointer-events: none;
   }
   
   .icon-button.plus svg {
-    width: 23px;
-    height: 23px;
+    width: 18px;
+    height: 18px;
   }
   
   .hidden-input,
   .hidden {
     display: none !important;
   }
-  
-  .unranked-block {
+
+  /* ── two-column layout: tierlist left, unranked right ── */
+  .content-grid {
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr 240px;
+    gap: 14px;
     align-items: start;
-    margin-bottom: 18px;
+  }
+
+  main {
+    grid-column: 1;
+    min-width: 0;
+  }
+
+  .unranked-panel {
+    grid-column: 2;
+    position: sticky;
+    top: calc(var(--topbar-h, 110px) + 10px);
+    max-height: calc(100vh - var(--topbar-h, 110px) - 30px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 18px;
+  }
+
+  .unranked-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     border: 1px dashed #3a3a3a;
-    border-radius: 22px;
+    border-radius: 18px;
     background: rgba(255,255,255,0.025);
-    padding: 14px;
+    padding: 10px;
   }
   
   .unranked-dropzone {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
     align-content: flex-start;
     align-items: flex-end;
-    min-height: 72px;
+    min-height: 52px;
   }
   
   .unranked-dropzone.dragover,
@@ -204,15 +225,15 @@
   
   .tierlist {
     display: grid;
-    gap: 14px;
+    gap: 10px;
   }
   
   .tier {
     display: grid;
-    grid-template-columns: 170px 1fr;
-    min-height: 150px;
+    grid-template-columns: 115px 1fr;
+    min-height: 100px;
     border: 1px solid #333;
-    border-radius: 22px;
+    border-radius: 18px;
     overflow: visible;
     background: rgba(255,255,255,0.04);
   }
@@ -221,26 +242,26 @@
     position: relative;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    gap: 10px;
-    padding: 12px;
+    gap: 8px;
+    padding: 8px;
     background: var(--tier-color, #cccccc);
     color: #111;
-    border-top-left-radius: 21px;
-    border-bottom-left-radius: 21px;
+    border-top-left-radius: 17px;
+    border-bottom-left-radius: 17px;
   }
   
   .tier-top-actions {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     position: relative;
     z-index: 4;
   }
   
   .tier-object-actions {
     display: flex;
-    gap: 6px;
+    gap: 5px;
     justify-content: flex-end;
     align-items: center;
     position: relative;
@@ -248,7 +269,7 @@
   
   .tier-drag-handle {
     position: absolute;
-    left: 10px;
+    left: 7px;
     top: 50%;
     z-index: 3;
     transform: translateY(-50%);
@@ -275,11 +296,11 @@
     place-items: center;
     justify-self: center;
     align-self: center;
-    min-width: 78px;
-    max-width: calc(100% - 54px);
-    min-height: 52px;
+    min-width: 52px;
+    max-width: calc(100% - 38px);
+    min-height: 36px;
     text-align: center;
-    font-size: 42px;
+    font-size: 28px;
     font-weight: 950;
     line-height: 1.05;
     white-space: normal;
@@ -287,8 +308,8 @@
     word-break: normal;
     hyphens: manual;
     outline: none;
-    border-radius: 14px;
-    padding: 8px 10px;
+    border-radius: 10px;
+    padding: 5px 7px;
     cursor: text;
     position: relative;
     z-index: 2;
@@ -317,18 +338,18 @@
   }
   
   .tier-placeholder {
-    min-height: 150px;
+    min-height: 100px;
     border: 2px dashed rgba(255,255,255,0.65);
-    border-radius: 22px;
+    border-radius: 18px;
     background: rgba(255,255,255,0.07);
   }
   
   .card-placeholder {
-    width: 126px;
-    height: 178px;
+    width: 84px;
+    height: 118px;
     align-self: flex-end;
     border: 2px dashed rgba(255,255,255,0.55);
-    border-radius: 16px;
+    border-radius: 11px;
     background: rgba(255,255,255,0.06);
   }
   
@@ -337,26 +358,26 @@
     flex-wrap: wrap;
     align-content: flex-start;
     align-items: flex-end;
-    gap: 12px;
-    padding: 16px;
-    min-height: 150px;
+    gap: 8px;
+    padding: 10px;
+    min-height: 100px;
     overflow: hidden;
-    border-top-right-radius: 21px;
-    border-bottom-right-radius: 21px;
+    border-top-right-radius: 17px;
+    border-bottom-right-radius: 17px;
   }
   
   .card {
-    width: 126px;
+    width: 84px;
     align-self: flex-end;
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 16px;
+    border-radius: 11px;
     overflow: hidden;
     background:
       linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025)),
       #171717;
     cursor: grab;
     user-select: none;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.22);
     transition:
       transform 120ms ease,
       border-color 120ms ease,
@@ -366,7 +387,7 @@
   .card:hover {
     transform: translateY(-2px);
     border-color: rgba(255,255,255,0.24);
-    box-shadow: 0 16px 38px rgba(0,0,0,0.32);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.32);
   }
   
   .card:active {
@@ -392,9 +413,9 @@
   
   .card-label {
     display: block;
-    min-height: 32px;
-    padding: 8px 9px;
-    font-size: 13px;
+    min-height: 22px;
+    padding: 5px 6px;
+    font-size: 11px;
     font-weight: 850;
     line-height: 1.15;
     text-align: center;
@@ -411,22 +432,22 @@
   
   .card-tools {
     display: flex;
-    gap: 6px;
-    padding: 8px;
+    gap: 4px;
+    padding: 5px;
     border-top: 1px solid rgba(255,255,255,0.06);
   }
   
   .card-tools button {
     flex: 1;
-    padding: 6px;
-    border-radius: 9px;
-    font-size: 12px;
+    padding: 4px;
+    border-radius: 7px;
+    font-size: 11px;
   }
   
   .add-tier-row {
     display: flex;
     justify-content: center;
-    margin-top: 18px;
+    margin-top: 14px;
   }
   
   .modal-backdrop {
@@ -447,7 +468,7 @@
   .modal {
     width: min(680px, 100%);
     border: 1px solid #333;
-    border-radius: 24px;
+    border-radius: 20px;
     background: #151515;
     box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
     overflow: hidden;
@@ -462,28 +483,28 @@
     justify-content: space-between;
     gap: 16px;
     align-items: center;
-    padding: 18px 20px;
+    padding: 14px 16px;
     border-bottom: 1px solid #333;
     background: rgba(255, 255, 255, 0.04);
   }
   
   .modal-header h2 {
     margin: 0;
-    font-size: 22px;
+    font-size: 18px;
     letter-spacing: -0.03em;
   }
   
   .modal-body {
-    padding: 20px;
+    padding: 16px;
   }
   
   .paste-zone {
     display: grid;
     place-items: center;
-    min-height: 260px;
-    padding: 28px;
+    min-height: 200px;
+    padding: 22px;
     border: 2px dashed #444;
-    border-radius: 18px;
+    border-radius: 14px;
     text-align: center;
     color: #aaa;
     background: rgba(255, 255, 255, 0.03);
@@ -501,37 +522,38 @@
   
   .crop-editor {
     display: grid;
-    grid-template-columns: 190px 1fr;
-    gap: 18px;
+    grid-template-columns: 170px 1fr;
+    gap: 14px;
     align-items: start;
   }
   
   .crop-list {
     display: grid;
-    gap: 8px;
-    max-height: 620px;
+    gap: 6px;
+    max-height: 520px;
     overflow: auto;
     padding-right: 4px;
   }
   
   .crop-list-item {
     display: grid;
-    grid-template-columns: 48px 1fr 32px;
-    gap: 8px;
+    grid-template-columns: 40px 1fr 28px;
+    gap: 6px;
     align-items: center;
-    padding: 7px;
+    padding: 6px;
     border: 1px solid #333;
-    border-radius: 12px;
+    border-radius: 10px;
     background: rgba(255,255,255,0.04);
     cursor: pointer;
   }
+
   .crop-remove-button {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     display: grid;
     place-items: center;
     padding: 0;
-    border-radius: 9px;
+    border-radius: 8px;
     background: rgba(100, 20, 20, 0.92);
     color: #fff;
     border: 1px solid rgba(120, 30, 30, 0.9);
@@ -542,8 +564,8 @@
   }
   
   .crop-remove-button svg {
-    width: 17px;
-    height: 17px;
+    width: 14px;
+    height: 14px;
     pointer-events: none;
   }
   
@@ -553,17 +575,17 @@
   }
   
   .crop-list-item img {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 6px;
     background: #222;
   }
   
   .crop-list-item span {
     min-width: 0;
     color: #bbb;
-    font-size: 12px;
+    font-size: 11px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -571,29 +593,29 @@
   
   .crop-main {
     display: grid;
-    gap: 14px;
+    gap: 12px;
   }
   
   .crop-workspace {
     display: grid;
     place-items: center;
-    min-height: 600px;
+    min-height: 500px;
     overflow: auto;
     border: 1px solid #333;
-    border-radius: 22px;
+    border-radius: 18px;
     background:
       radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 22rem),
       #0b0b0b;
-    padding: 80px;
+    padding: 70px;
   }
   
   .crop-frame {
     position: relative;
-    width: 360px;
-    height: 360px;
+    width: 300px;
+    height: 300px;
     overflow: visible;
     border: 2px solid rgba(255,255,255,0.92);
-    border-radius: 18px;
+    border-radius: 14px;
     background: rgba(0,0,0,0.36);
     touch-action: none;
     box-shadow:
@@ -605,7 +627,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: 16px;
+    border-radius: 12px;
     pointer-events: none;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
   }
@@ -623,34 +645,34 @@
   
   .crop-fields {
     display: grid;
-    gap: 12px;
+    gap: 10px;
   }
   
   .zoom-field {
     display: grid;
-    gap: 8px;
+    gap: 6px;
     color: #aaa;
-    font-size: 13px;
+    font-size: 12px;
   }
   
   .modal-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
-    padding: 0 20px 20px;
+    gap: 8px;
+    padding: 0 16px 16px;
   }
   
   .toast {
     position: fixed;
-    right: 20px;
-    bottom: 20px;
+    right: 16px;
+    bottom: 16px;
     z-index: 2000;
-    max-width: min(420px, calc(100vw - 40px));
-    padding: 12px 14px;
-    border-radius: 14px;
+    max-width: min(380px, calc(100vw - 32px));
+    padding: 10px 12px;
+    border-radius: 12px;
     font-weight: 800;
     box-shadow: 0 18px 60px rgba(0,0,0,0.35);
-    transform: translateY(18px);
+    transform: translateY(14px);
     opacity: 0;
     pointer-events: none;
     transition:
@@ -675,19 +697,47 @@
   
   @media (min-width: 1500px) {
     .card {
-      width: 140px;
+      width: 94px;
     }
   
     .card-placeholder {
-      width: 140px;
-      height: 192px;
+      width: 94px;
+      height: 128px;
     }
   }
   
+  @media (max-width: 1100px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+    }
+
+    main {
+      grid-column: 1;
+    }
+
+    .unranked-panel {
+      grid-column: 1;
+      order: -1;
+      position: static;
+      max-height: none;
+      overflow: visible;
+    }
+
+    .unranked-block {
+      flex-direction: row;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .unranked-dropzone {
+      flex: 1;
+    }
+  }
+
   @media (max-width: 900px) {
     .layout {
       width: min(100vw - 20px, 900px);
-      padding-top: 12px;
+      padding-top: 10px;
     }
   
     .topbar {
@@ -704,20 +754,20 @@
     }
   
     .tier-side {
-      border-radius: 21px 21px 0 0;
-      min-height: 120px;
+      border-radius: 17px 17px 0 0;
+      min-height: 80px;
     }
   
     .tier-drag-handle {
-      left: 12px;
+      left: 10px;
     }
   
     .tier-main-label {
-      min-height: 72px;
+      min-height: 48px;
     }
   
     .dropzone {
-      border-radius: 0 0 21px 21px;
+      border-radius: 0 0 17px 17px;
     }
   
     .crop-editor {
@@ -732,13 +782,13 @@
     }
   
     .crop-list-item {
-      width: 160px;
+      width: 140px;
       flex: 0 0 auto;
     }
   
     .crop-workspace {
-      min-height: 500px;
-      padding: 70px;
+      min-height: 420px;
+      padding: 56px;
     }
   }
   
@@ -760,31 +810,27 @@
       width: 100%;
     }
   
-    .unranked-block {
-      grid-template-columns: 1fr;
-    }
-  
     .icon-button.plus {
       width: 100%;
     }
   
     .card {
-      width: calc(50% - 6px);
+      width: calc(50% - 4px);
     }
   
     .card-placeholder {
-      width: calc(50% - 6px);
-      height: 210px;
+      width: calc(50% - 4px);
+      height: 140px;
     }
   
     .dropzone,
     .unranked-dropzone {
-      gap: 8px;
-      padding: 10px;
+      gap: 6px;
+      padding: 8px;
     }
   
     .tier {
-      border-radius: 18px;
+      border-radius: 14px;
     }
   
     .tier-top-actions {
@@ -796,13 +842,13 @@
     }
   
     .crop-workspace {
-      min-height: 420px;
-      padding: 54px;
+      min-height: 360px;
+      padding: 44px;
     }
   
     .crop-frame {
-      width: 280px;
-      height: 280px;
+      width: 240px;
+      height: 240px;
     }
   
     .modal-actions {

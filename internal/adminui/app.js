@@ -625,19 +625,19 @@ function getTierLabelLayout(text) {
   const metrics = getTierLabelMetrics(text);
 
   const width = Math.min(
-    460,
+    310,
     Math.max(
-      170,
-      120 + metrics.longestWordLength * 18,
-      90 + metrics.totalLength * 7
+      115,
+      80 + metrics.longestWordLength * 12,
+      60 + metrics.totalLength * 5
     )
   );
 
   const fontSize = Math.max(
-    22,
+    14,
     Math.min(
-      42,
-      42 - Math.max(0, metrics.totalLength - 22) * 0.9
+      28,
+      28 - Math.max(0, metrics.totalLength - 14) * 0.6
     )
   );
 
@@ -651,8 +651,8 @@ function getSharedTierLabelLayout() {
   const layouts = data.tiers.map((tier) => getTierLabelLayout(tier.label));
 
   return {
-    width: Math.max(170, ...layouts.map((layout) => layout.width)),
-    fontSize: Math.min(42, ...layouts.map((layout) => layout.fontSize))
+    width: Math.max(115, ...layouts.map((layout) => layout.width)),
+    fontSize: Math.min(28, ...layouts.map((layout) => layout.fontSize))
   };
 }
 
@@ -1179,5 +1179,15 @@ document.addEventListener("keydown", (event) => {
     closeUploadModal();
   }
 });
+
+function updateTopbarHeight() {
+  const topbar = document.querySelector(".topbar");
+  if (topbar) {
+    document.documentElement.style.setProperty("--topbar-h", topbar.offsetHeight + "px");
+  }
+}
+
+updateTopbarHeight();
+window.addEventListener("resize", updateTopbarHeight);
 
 loadData();
