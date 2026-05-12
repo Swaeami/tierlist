@@ -37,6 +37,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: docker-compose.yml
           target: /opt/tierlist
+          overwrite: true
 
       - name: Deploy on server
         uses: appleboy/ssh-action@v1
