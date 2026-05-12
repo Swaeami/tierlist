@@ -46,67 +46,7 @@ docker compose up -d
 
 Сервер слушает на `127.0.0.1:8087`.
 
-### 4. Настроить nginx
 
-```nginx
-server {
-    listen 80;
-    server_name ваш-домен.ru;
-    location /.well-known/acme-challenge/ { root /var/www/html; }
-    location / { return 301 https://$host$request_uri; }
-}
-
-server {
-    listen 443 ssl;
-    server_name ваш-домен.ru;
-
-    ssl_certificate     /etc/nginx/ssl/ваш-домен.ru/fullchain.pem;
-    ssl_certificate_key /etc/nginx/ssl/ваш-домен.ru/key.pem;
-
-    client_max_body_size 100m;
-
-    location / {
-        proxy_pass http://127.0.0.1:8087;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
-```
-
-### 5. Получить SSL-сертификат через acme.sh
-
-```bash
-curl https://get.acme.sh | sh -s email=ваш@email.com
-~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
-
-sudo mkdir -p /etc/nginx/ssl/ваш-домен.ru
-sudo chown -R $USER /etc/nginx/ssl
-
-~/.acme.sh/acme.sh --issue -d ваш-домен.ru -w /var/www/html
-~/.acme.sh/acme.sh --install-cert -d ваш-домен.ru \
-    --fullchain-file /etc/nginx/ssl/ваш-домен.ru/fullchain.pem \
-    --key-file      /etc/nginx/ssl/ваш-домен.ru/key.pem \
-    --reloadcmd     "sudo systemctl reload nginx"
-```
-
-Сертификат обновляется автоматически через cron.
-
----
-
-## CI/CD (GitHub Actions)
-
-При каждом пуше в `master` автоматически собирается Docker-образ и деплоится на сервер.
-
-Добавь секреты в `Settings → Secrets → Actions`:
-
-| Секрет | Значение |
-|---|---|
-| `SSH_HOST` | IP сервера |
-| `SSH_USER` | Пользователь SSH |
-| `SSH_PRIVATE_KEY` | Приватный SSH-ключ |
-
----
 
 ## Локальная админка
 
@@ -149,5 +89,3 @@ go run ./cmd/admin
 go build -o admin-tool ./cmd/admin
 ./admin-tool
 ```
-
-Бинарник самодостаточный — статика вшита внутрь, папка `admin/` рядом не нужна.
