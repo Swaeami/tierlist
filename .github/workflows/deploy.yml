@@ -22,15 +22,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set image name
-        run: echo "IMAGE=ghcr.io/$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ${{ env.IMAGE }}:latest
+          tags: ghcr.io/swaeami/tierlist:latest
 
       - name: Deploy on server
         uses: appleboy/ssh-action@v1
@@ -40,6 +37,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /opt/tierlist
-            echo "GITHUB_REPOSITORY=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" > .env.deploy
-            docker compose --env-file .env.deploy pull
-            docker compose --env-file .env.deploy up -d
+            docker compose pull
+            docker compose up -d
