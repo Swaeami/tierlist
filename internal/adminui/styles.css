@@ -177,8 +177,12 @@
     margin-bottom: 14px;
     border: 1px dashed #3a3a3a;
     border-radius: 18px;
-    background: rgba(255,255,255,0.025);
+    background: rgba(15, 15, 15, 0.92);
+    backdrop-filter: blur(12px);
     padding: 10px;
+    position: sticky;
+    top: 10px;
+    z-index: 40;
   }
   
   .unranked-dropzone {
