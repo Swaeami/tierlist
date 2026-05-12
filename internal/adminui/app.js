@@ -1180,14 +1180,4 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-function updateTopbarHeight() {
-  const topbar = document.querySelector(".topbar");
-  if (topbar) {
-    document.documentElement.style.setProperty("--topbar-h", topbar.offsetHeight + "px");
-  }
-}
-
-updateTopbarHeight();
-window.addEventListener("resize", updateTopbarHeight);
-
 loadData();

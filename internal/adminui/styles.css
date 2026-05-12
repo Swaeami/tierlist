@@ -80,17 +80,12 @@
   }
   
   .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
     display: grid;
     grid-template-columns: minmax(200px, 640px) auto;
     gap: 14px;
     align-items: start;
     padding: 10px 0 14px;
     margin-bottom: 14px;
-    background: rgba(15, 15, 15, 0.92);
-    backdrop-filter: blur(12px);
   }
   
   .brand-fields {
@@ -190,8 +185,8 @@
   .unranked-panel {
     grid-column: 2;
     position: sticky;
-    top: calc(var(--topbar-h, 110px) + 10px);
-    max-height: calc(100vh - var(--topbar-h, 110px) - 30px);
+    top: 10px;
+    max-height: calc(100vh - 20px);
     overflow-y: auto;
     overflow-x: hidden;
     border-radius: 18px;
