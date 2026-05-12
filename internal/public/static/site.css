@@ -200,3 +200,13 @@
       min-width: 40px;
     }
   }
+
+/* ── Image blur until loaded ─────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.img-loading {
+  filter: blur(10px);
+  transition: filter 0.4s ease;
+}

@@ -111,6 +111,18 @@ cropFrame.addEventListener("wheel", (event) => {
   renderCropImage();
 }, { passive: false });
 
+function setButtonLoading(btn, loading) {
+  if (loading) {
+    btn._prevHTML = btn.innerHTML;
+    btn._prevDisabled = btn.disabled;
+    btn.disabled = true;
+    btn.innerHTML = `<span class="btn-spinner"></span>`;
+  } else {
+    btn.disabled = btn._prevDisabled ?? false;
+    btn.innerHTML = btn._prevHTML ?? btn.textContent;
+  }
+}
+
 function showToast(message, type = "success") {
   const toast = document.querySelector("#toast");
 
@@ -188,10 +200,19 @@ async function loadData() {
   } catch (error) {
     showToast("Не удалось загрузить данные", "error");
     console.error(error);
+  } finally {
+    const loader = document.querySelector("#appLoader");
+    if (loader) {
+      loader.classList.add("done");
+      setTimeout(() => loader.remove(), 400);
+    }
   }
 }
 
 async function saveData() {
+  const btn = document.querySelector("#saveButton");
+  setButtonLoading(btn, true);
+
   data.title = titleInput.value.trim();
   data.description = descriptionInput.value.trim();
 
@@ -212,6 +233,8 @@ async function saveData() {
   } catch (error) {
     showToast("Ошибка сохранения", "error");
     console.error(error);
+  } finally {
+    setButtonLoading(btn, false);
   }
 }
 
@@ -545,6 +568,9 @@ async function exportCropItem(item) {
 async function uploadCroppedQueue() {
   if (!cropQueue.length) return;
 
+  const btn = document.querySelector("#uploadCroppedButton");
+  setButtonLoading(btn, true);
+
   const form = new FormData();
 
   try {
@@ -580,6 +606,8 @@ async function uploadCroppedQueue() {
   } catch (error) {
     showToast("Ошибка загрузки", "error");
     console.error(error);
+  } finally {
+    setButtonLoading(btn, false);
   }
 }
 
@@ -770,7 +798,7 @@ function createCard(item) {
 
   card.innerHTML = `
     <span class="card-image-wrap">
-      <img src="${escapeHtml(adminImageUrl(item.image))}" alt="" title="Нажми, чтобы изменить label" />
+      <img class="img-loading" src="${escapeHtml(adminImageUrl(item.image))}" alt="" title="Нажми, чтобы изменить label" />
     </span>
 
     <div class="card-label ${item.label ? "" : "empty"}" title="${escapeHtml(item.label || "")}">
@@ -782,6 +810,10 @@ function createCard(item) {
       <button class="danger" type="button">×</button>
     </div>
   `;
+
+  card.querySelector("img").addEventListener("load", function () {
+    this.classList.remove("img-loading");
+  }, { once: true });
 
   card.addEventListener("pointerdown", (event) => {
     if (event.target.closest("button")) return;

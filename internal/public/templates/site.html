@@ -26,7 +26,7 @@
           <div class="items">
             {{ range .Items }}
               <article class="card">
-                <img src="{{ .ImageURL }}" alt="{{ .Label }}" loading="lazy" />
+                <img class="img-loading" src="{{ .ImageURL }}" alt="{{ .Label }}" loading="lazy" onload="this.classList.remove('img-loading')" />
                 {{ if .Label }}
                   <div class="label" title="{{ .Label }}">{{ .Label }}</div>
                 {{ end }}
